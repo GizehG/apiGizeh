@@ -92,9 +92,9 @@ const findOneEmpleado = (request, response) => {
 }
 
 const insertEmpleado = (request, response) => {
-    const { cod_empleado, nombre, cod_jornada, cod_depto } = request.body
+    const { cod_empleado, nombre, edad, cod_jornada, cod_depto } = request.body
     response.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
-    pool.query('insert into empleado_departamento_jornada (cod_empleado, nombre, cod_jornada, cod_depto) values ($1, $2, $3, $4)', [cod_empleado, nombre, cod_jornada, cod_depto], (error, data) => {
+    pool.query('insert into empleado_departamento_jornada (cod_empleado, nombre, edad, cod_jornada, cod_depto) values ($1, $2, $3, $4,$5)', [cod_empleado, nombre, edad, cod_jornada, cod_depto], (error, data) => {
         if (error) {
             throw error
         }
@@ -208,7 +208,7 @@ const findOneMarca = (request, response) => {
 const insertMarca = (request, response) => {
     const { marcaCorrelativo, fecha, hora, entrada_salida, cod_empleado } = request.body
     response.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
-    pool.query('insert into marca_empleado (marcaCorrelativo, fecha, hora, entrada_salida, cod_empleado) values ($1, $2, $3, $4, $5)', [marcaCorrelativo, fecha, hora, entrada_salida, cod_empleado], (error, data) => {
+    pool.query('insert into marca_empleado (marcaCorrelativo, fecha, hora, entrada_salida, cod_empleado) values (DEFAULT, $1, $2, $3, $4)', [fecha, hora, entrada_salida, cod_empleado], (error, data) => {
         if (error) {
             throw error
         }
