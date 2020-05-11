@@ -60,7 +60,7 @@ const updateDepartamento = (request, response) => {
     )
 }
 
-const deleteDepartamento = (request, response) => {
+const deleteDepto = (request, response) => {
     const cod_depto = parseInt(request.params.cod_depto)
     pool.query('delete from departamento where cod_depto = $1', [cod_depto], (error, data) => {
         if (error) {
@@ -101,7 +101,7 @@ const insertEmpleado = (request, response) => {
         response.status(201).send('Se agrego el empleado')
     })
 }
-
+//empleado
 const updateEmpleado = (request, response) => {
     const cod_empleado = parseInt(request.params.cod_empleado)
     const { nombre } = request.body
@@ -158,7 +158,7 @@ const insertJornada = (request, response) => {
         response.status(201).send('Se agrego la jornada')
     })
 }
-
+//falta
 const updateJornada = (request, response) => {
     const cod_jornada = parseInt(request.params.cod_jornada)
     const { nombre } = request.body
@@ -176,13 +176,15 @@ const updateJornada = (request, response) => {
 
 const deleteJornada = (request, response) => {
     const cod_jornada = parseInt(request.params.cod_jornada)
-    pool.query('delete from jornada where cod_empleado = $1', [cod_jornada], (error, data) => {
+    pool.query('delete from jornada where cod_jornada = $1', [cod_jornada], (error, data) => {
         if (error) {
             throw error
         }
         response.status(200).send('Jornada eliminada')
     })
 }
+
+
 
 //-------------------------MARCAS--------------------------
 
@@ -214,7 +216,8 @@ const insertMarca = (request, response) => {
         }
         response.status(201).send('Se agrego la marca')
     })
-}
+}  
+
 
 const updateMarca = (request, response) => {
     const marcaCorrelativo = parseInt(request.params.marcaCorrelativo)
@@ -230,6 +233,7 @@ const updateMarca = (request, response) => {
         }
     )
 }
+
 
 const deleteMarca = (request, response) => {
     const marcaCorrelativo = parseInt(request.params.marcaCorrelativo)
@@ -275,7 +279,7 @@ const insertPermiso = (request, response) => {
 
 const updatePermiso = (request, response) => {
     const p_correlativo = parseInt(request.params.p_correlativo)
-    const { nombre } = request.body
+    const { fecha_perm,motivo, cod_empleado } = request.body
     pool.query(
         'update permiso_empleado set nombre = $1 where p_correlativo = $2',
         [p_correlativo, fecha_perm, motivo, cod_empleado ],
@@ -289,6 +293,7 @@ const updatePermiso = (request, response) => {
 }
 
 const deletePermiso = (request, response) => {
+
     const p_correlativo = parseInt(request.params.p_correlativo)
     pool.query('delete from permiso_empleado where p_correlativo = $1', [p_correlativo], (error, data) => {
         if (error) {
@@ -304,7 +309,7 @@ module.exports = {
     findOneDepartamento,
     insertDepartamento,
     updateDepartamento,
-    deleteDepartamento,
+    deleteDepto,
 
     findAllEmpleados,
     findOneEmpleado,

@@ -22,7 +22,7 @@ app.get('/departamentos', db.findAllDepartamentos )
 app.get('/departamentos/:cod_depto', db.findOneDepartamento)
 app.post('/departamentos', db.insertDepartamento)
 app.put('/departamentos/:cod_depto', db.updateDepartamento)
-app.delete('/departamentos/:cod_depto', db.deleteDepartamento)
+app.delete('/departamentos/:cod_depto', db.deleteDepto)
 
  
 app.get('/empleados', db.findAllEmpleados )
